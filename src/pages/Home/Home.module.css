@@ -1,0 +1,4 @@
+.navWrap {
+  display: flex;
+  flex-direction: column;
+}
