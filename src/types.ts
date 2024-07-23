@@ -8,3 +8,9 @@ export interface TasksState {
   isLoading: boolean;
   isError: true | null;
 }
+
+export type StatusTasks = "all" | "done" | "inProgress";
+
+export interface FilterTasksState {
+  status: StatusTasks;
+}
