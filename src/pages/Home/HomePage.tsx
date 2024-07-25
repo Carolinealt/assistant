@@ -1,5 +1,11 @@
+import { useDispatch } from "react-redux";
 import css from "./Home.module.css";
 const Home = () => {
+  const dispatch = useDispatch();
+
+  const handleClick = (e) => {
+dispatch()
+  };
   return (
     <div className={css.container}>
       <div className={css.containerImg}>
@@ -17,7 +23,9 @@ const Home = () => {
           <p className={css.pIsLoggin}>
             Not register yet? Sooo... You should click the next button
           </p>
-          <button className={css.btnAuth}>Register</button>
+          <button className={css.btnAuth} onClick={handleClick}>
+            Register
+          </button>
         </div>
         {/* <div className={css.navWrap}>
           <Link to={"/todo"}>todo</Link>

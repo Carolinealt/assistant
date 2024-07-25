@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Task, TasksState } from "../../../types";
 
 const initialState: TasksState = {
@@ -22,5 +22,3 @@ export const tasksSlice = createSlice({
 
 export const { addTask, deleteTask } = tasksSlice.actions;
 export const tasksReducer = tasksSlice.reducer;
-
-
