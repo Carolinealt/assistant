@@ -1,11 +1,14 @@
-import { useDispatch } from "react-redux";
+import clsx from "clsx";
 import css from "./Home.module.css";
-const Home = () => {
-  const dispatch = useDispatch();
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/auth/slice";
 
-  const handleClick = (e) => {
-dispatch()
-  };
+const Home = () => {
+  const customLink = clsx(css.moduleLink);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  console.log(isLoggedIn);
+  
   return (
     <div className={css.container}>
       <div className={css.containerImg}>
@@ -17,22 +20,18 @@ dispatch()
       <div className={css.containerNav}>
         <div className={css.login}>
           <p className={css.pIsLoggin}>Let`s</p>
-          <button className={css.btnAuth}>Login</button>
+          <Link to={"register"} className={clsx(customLink)}>
+            Get started!
+          </Link>
         </div>
         <div className={css.register}>
           <p className={css.pIsLoggin}>
-            Not register yet? Sooo... You should click the next button
+            Already have an account? Cool! Sign in:
           </p>
-          <button className={css.btnAuth} onClick={handleClick}>
+          <Link to={"login"} className={clsx(customLink)}>
             Register
-          </button>
+          </Link>
         </div>
-        {/* <div className={css.navWrap}>
-          <Link to={"/todo"}>todo</Link>
-          <Link to={"/timer"}>timer</Link>
-          <Link to={"/pomodoro"}>pomodoro</Link>
-          <Link to={"/contacts"}>contacts</Link>
-        </div> */}
       </div>
     </div>
   );

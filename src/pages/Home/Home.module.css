@@ -26,6 +26,23 @@
   transform: translate(-50%, -50%);
 }
 
+.moduleLink {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #279daa;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  width: 130px;
+  margin: auto;
+  display: block;
+}
+
 .containerNav {
   background-color: #ffffff;
   width: 100%;
@@ -36,11 +53,6 @@
   gap: 4px;
   position: absolute;
   bottom: -130px;
-}
-
-.btnAuth {
-  width: 130px;
-  margin: auto;
 }
 
 .pIsLoggin {
@@ -89,7 +101,7 @@
     transform: translateX(-10%);
     box-shadow: -10px 10px 8px 2px rgba(0, 0, 0, 0.3);
   }
-  .btnAuth {
+  .moduleLink {
     width: 200px;
     font-size: 20px;
     margin: auto;
@@ -98,6 +110,8 @@
     font-size: 20px;
   }
 }
+
+/* desktops */
 
 @media (min-width: 991px) {
   .container {

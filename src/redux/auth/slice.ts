@@ -12,7 +12,9 @@ const initialState: authState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers:{}
+  reducers: {
+    addR: (state, action) => state,
+  },
   // extraReducers: (builder) => {
   //   builder.addCase(
   //     registerUser.fulfilled,
@@ -21,5 +23,7 @@ const authSlice = createSlice({
   // },
 });
 
-export const {} = authSlice;
+export const { addR } = authSlice;
 export const authReducer = authSlice.reducer;
+
+export const selectIsLoggedIn = (state) => state.auth.isLoggedin;
