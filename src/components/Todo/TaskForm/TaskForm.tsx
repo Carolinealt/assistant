@@ -1,5 +1,5 @@
 import { useId } from "react";
-import css from "./TaskForm.modle.css";
+import css from "./TaskForm.module.css";
 import { Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../../redux/tasks/listTasks/slice";
@@ -20,10 +20,17 @@ const TaskForm = () => {
   return (
     <div>
       <Formik initialValues={{ task: "" }} onSubmit={handleSubmit}>
-        <Form>
+        <Form className={css.form}>
           <label htmlFor={inputTaskId}>Enter your task</label>
-          <Field name="task" type="text" id={inputTaskId} />
-          <button type="submit">Add</button>
+          <Field
+            name="task"
+            type="text"
+            id={inputTaskId}
+            className={css.inputTask}
+          />
+          <button type="submit" className={css.btn}>
+            Add
+          </button>
         </Form>
       </Formik>
     </div>

@@ -9,8 +9,8 @@ const StatsTodo = () => {
   const numberActiveTasks = useSelector(selectActiveTasks);
   const nmbCompletedTasks = useSelector(selectCompletedTasks);
   return (
-    <div>
-      <p>active: {numberActiveTasks}</p>
+    <div className={css.container}>
+      <p>Active: {numberActiveTasks}</p>
       <p>Completed: {nmbCompletedTasks}</p>
     </div>
   );

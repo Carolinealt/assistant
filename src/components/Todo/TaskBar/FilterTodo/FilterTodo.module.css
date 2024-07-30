@@ -1,12 +1,22 @@
+.form {
+  text-align: center;
+  font-size: 14px;
+}
+
 .select {
   background-color: rgb(19, 19, 19);
   border: navajowhite;
   border-radius: 20px;
-  font-size: 15px;
+  font-size: 13x;
   color: white;
   padding: 10px;
+  min-width: 90px;
 }
 .option {
   padding: 10px;
+  margin: 10px;
+}
+
+.label {
   margin: 10px;
 }

@@ -1,4 +1,25 @@
-.containerBar{
-    background-color: #323232;
-    width: 100%;
+.containerBar {
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+  background-color: #32323284;
+  width: 100%;
+  text-align: center;
+  border-radius: 20px;
+  padding: 15px 0;
+}
+
+.itemStats {
+  text-align: left;
+  flex: 1;
+  margin: 20px;
+  min-width: 89px;
+}
+
+.itemFilter {
+  text-align: center;
+  margin: 20px 10px;
+  margin-left: 15px;
+
+  /* margin: 5px; */
 }

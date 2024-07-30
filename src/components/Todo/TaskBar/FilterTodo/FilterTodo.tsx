@@ -12,8 +12,10 @@ const FilterTodo = () => {
   return (
     <div>
       <Formik initialValues={{}} onSubmit={() => {}}>
-        <Form>
-          <label htmlFor={selectId}>to show </label>
+        <Form className={css.form}>
+          <label htmlFor={selectId} className={css.label}>
+            to show{" "}
+          </label>
           <Field
             as="select"
             name="status"
@@ -31,7 +33,10 @@ const FilterTodo = () => {
               active
             </option>
           </Field>
-          <label htmlFor={selectId}> tasks</label>
+          <label htmlFor={selectId} className={css.label}>
+            {" "}
+            tasks
+          </label>
         </Form>
       </Formik>
     </div>
