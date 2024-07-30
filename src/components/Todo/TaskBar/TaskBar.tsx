@@ -3,7 +3,7 @@ import StatsTodo from "./StatsTodo/StatsTodo";
 import css from "./TaskBar.module.css";
 const TaskBar = () => {
   return (
-    <div>
+    <div className={css.containerBar}>
       <h2>Tasks</h2>
       <StatsTodo />
       <h2>Filter</h2>

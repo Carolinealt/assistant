@@ -1,6 +1,11 @@
 export interface Task {
   id: number;
   content: string;
+  completed: boolean;
+}
+
+export interface TasksList {
+  tasks: Task[];
 }
 
 export interface TasksState {
@@ -9,19 +14,26 @@ export interface TasksState {
   isError: true | null;
 }
 
-export type StatusTasks = "all" | "done" | "inProgress";
+export const StatusFilter = {
+  all: "all",
+  active: "active",
+  completed: "completed",
+} as const;
+
+export type StatusFilterType = (typeof StatusFilter)[keyof typeof StatusFilter];
 
 export interface FilterTasksState {
-  status: StatusTasks;
+  status: StatusFilterType;
 }
 
-export interface User {
+export interface UserSignUpData {
   email: string;
   name: string;
+  password: string;
 }
 
 export interface authState {
-  user: User;
+  user: UserSignUpData;
   token: null | string;
   isLoggedin: boolean;
   isRefreshing: boolean;

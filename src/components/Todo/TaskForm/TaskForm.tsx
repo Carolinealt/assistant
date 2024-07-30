@@ -1,4 +1,4 @@
-import React, { useId } from "react";
+import { useId } from "react";
 import css from "./TaskForm.modle.css";
 import { Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
@@ -9,9 +9,13 @@ const TaskForm = () => {
   const inputTaskId = useId();
   const handleSubmit = (values, action) => {
     const taskId = Date.now();
-    const task = { content: values.task, id: taskId };
+    if (!values.task.trim()) {
+      // alert("enter something...");
+      return;
+    }
+    const task = { content: values.task, id: taskId, completed: false };
     dispatch(addTask(task));
-    action.resetForm(); 
+    action.resetForm();
   };
   return (
     <div>

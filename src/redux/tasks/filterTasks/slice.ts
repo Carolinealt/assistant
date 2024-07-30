@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { StatusTasks } from "../../../types";
+import {
+  FilterTasksState,
+  StatusFilter,
+  StatusFilterType,
+} from "../../../types";
 
-interface InitialState {
-  status: StatusTasks;
-}
-
-const initialState: InitialState = { status: "all" };
+const initialState: FilterTasksState = { status: StatusFilter.all };
 
 export const filterTasks = createSlice({
   name: "filterTasks",
   initialState,
   reducers: {
-    changeFilter: (state, { payload }: PayloadAction<StatusTasks>) => {
+    changeFilter: (state, { payload }: PayloadAction<StatusFilterType>) => {
       state.status = payload;
     },
   },

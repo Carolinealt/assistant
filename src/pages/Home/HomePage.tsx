@@ -8,7 +8,7 @@ const Home = () => {
   const customLink = clsx(css.moduleLink);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   console.log(isLoggedIn);
-  
+
   return (
     <div className={css.container}>
       <div className={css.containerImg}>
@@ -20,18 +20,22 @@ const Home = () => {
       <div className={css.containerNav}>
         <div className={css.login}>
           <p className={css.pIsLoggin}>Let`s</p>
-          <Link to={"register"} className={clsx(customLink)}>
-            Get started!
+          <Link to={"todo"} className={clsx(customLink)}>
+            {"Begin"}
           </Link>
+
+          {/* <Link to={"register"} className={clsx(customLink)}>
+            Get started!
+          </Link> */}
         </div>
-        <div className={css.register}>
+        {/* <div className={css.register}>
           <p className={css.pIsLoggin}>
             Already have an account? Cool! Sign in:
           </p>
           <Link to={"login"} className={clsx(customLink)}>
             Register
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

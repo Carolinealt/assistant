@@ -3,7 +3,7 @@ import { authState } from "../../types";
 import { registerUser } from "./operations";
 
 const initialState: authState = {
-  user: { email: "", name: "" },
+  user: { email: "", name: "", password: "" },
   token: null,
   isLoggedin: false,
   isRefreshing: false,
@@ -12,18 +12,19 @@ const initialState: authState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    addR: (state, action) => state,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(
+      registerUser.fulfilled,
+      (state: authState, { payload }: PayloadAction<any>) => {
+        console.log("payload - ", payload);
+
+        state.token = payload;
+      }
+    );
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(
-  //     registerUser.fulfilled,
-  //     (state, { payload }: PayloadAction) => {}
-  //   );
-  // },
 });
 
-export const { addR } = authSlice;
 export const authReducer = authSlice.reducer;
 
-export const selectIsLoggedIn = (state) => state.auth.isLoggedin;
+export const selectIsLoggedIn = (state: authState) => state.isLoggedin;
