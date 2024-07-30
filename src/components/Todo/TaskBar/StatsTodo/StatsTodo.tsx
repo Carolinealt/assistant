@@ -1,10 +1,17 @@
 import React from "react";
 import css from "./StatsTodo.module.css";
+import { useSelector } from "react-redux";
+import {
+  selectActiveTasks,
+  selectCompletedTasks,
+} from "../../../../redux/tasks/listTasks/selectors";
 const StatsTodo = () => {
+  const numberActiveTasks = useSelector(selectActiveTasks);
+  const nmbCompletedTasks = useSelector(selectCompletedTasks);
   return (
     <div>
-      <p>active: 5</p>
-      <p>Completed: 9</p>
+      <p>active: {numberActiveTasks}</p>
+      <p>Completed: {nmbCompletedTasks}</p>
     </div>
   );
 };

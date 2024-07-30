@@ -23,3 +23,17 @@ export const selectVisibleList = createSelector(
     }
   }
 );
+
+export const selectActiveTasks = createSelector([selectTaskList], (list) => {
+  const filteredList = list.filter((task) => {
+    return !task.completed && task;
+  });
+  return filteredList.length;
+});
+
+export const selectCompletedTasks = createSelector([selectTaskList], (list) => {
+  const filteredList = list.filter((task) => {
+    return task.completed && task;
+  });
+  return filteredList.length;
+});
