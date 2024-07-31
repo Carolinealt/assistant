@@ -37,4 +37,5 @@ export interface authState {
   token: null | string;
   isLoggedin: boolean;
   isRefreshing: boolean;
+  isOpenModal: boolean;
 }

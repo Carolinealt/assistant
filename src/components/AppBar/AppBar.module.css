@@ -1,3 +1,79 @@
-.barContainer{
-    display: none;
+.barContainer {
+}
+
+.mobMenu {
+  box-shadow: 0 2px 5px black;
+  background-color: rgb(240, 233, 222);
+  border-radius: 30px;
+  font-size: 12px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  transition: transform 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: translateX(-100%);
+}
+
+.showModal {
+  transform: translateX(0);
+} 
+
+.openBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  fill: white;
+  margin: 10px;
+}
+
+.closeBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  fill: white;
+  margin: 10px;
+  position: sticky;
+  left: 100%;
+}
+
+.barList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 8px;
+  padding: 0;
+}
+
+.item {
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  margin: auto;
+  width: 50%;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #279daa;
+  cursor: pointer;
+  transition: border-color 0.25s ease-in-out;
+  text-decoration: none;
+}
+
+.item:hover {
+  border-color: rgb(152, 255, 255);
+}
+
+.linkBar {
+  color: rgb(255, 255, 255);
 }
