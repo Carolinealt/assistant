@@ -20,7 +20,7 @@ const Home = () => {
       <div className={css.containerNav}>
         <div className={css.login}>
           <p className={css.pIsLoggin}>Let`s</p>
-          <Link to={"todo"} className={clsx(customLink)}>
+          <Link to={"register"} className={clsx(customLink)}>
             {"Begin"}
           </Link>
 
