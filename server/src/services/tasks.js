@@ -1,8 +1,20 @@
 import { TasksCollection } from '../db/models/task.js';
+import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 
-export const getAllTasks = async () => {
-  const tasks = await TasksCollection.find();
-  return tasks;
+export const getAllTasks = async ({ page, perPage }) => {
+  const limit = perPage;
+  const skip = (page - 1) * perPage;
+
+  const tasksQuery = TasksCollection.find();
+  const tasksCount = await TasksCollection.find()
+    .merge(tasksQuery)
+    .countDocuments();
+
+  const tasks = await tasksQuery.skip(skip).limit(limit).exec();
+
+  const paginationData = calculatePaginationData(tasksCount, perPage, page);
+
+  return { data: tasks, ...paginationData };
 };
 
 export const getTaskById = async (taskId) => {

@@ -6,9 +6,12 @@ import {
   updateTask,
 } from '../services/tasks.js';
 import createHttpError from 'http-errors';
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 
 export const getAllTasksController = async (req, res, next) => {
-  const tasks = await getAllTasks();
+  const { page, perPage } = parsePaginationParams(req.query);
+
+  const tasks = await getAllTasks({ page, perPage });
 
   res.status(200).json({
     status: 200,

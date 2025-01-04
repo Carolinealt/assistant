@@ -8,19 +8,36 @@ import {
   upsertTaskController,
 } from '../controllers/tasks.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
+import { validateBody } from '../middlewares/validateBody.js';
+import { createTaskSchema, updateTaskSchema } from '../validation/tasks.js';
+import { isValidId } from '../middlewares/isValidId.js';
 
 const router = Router();
 
 router.get('/tasks', ctrlWrapper(getAllTasksController));
 
-router.get('/tasks/:taskId', ctrlWrapper(getTaskByIdController));
+router.get('/tasks/:taskId', isValidId, ctrlWrapper(getTaskByIdController));
 
-router.post('/tasks', ctrlWrapper(createTaskController));
+router.post(
+  '/tasks',
+  validateBody(createTaskSchema),
+  ctrlWrapper(createTaskController),
+);
 
-router.delete('/tasks/:taskId', ctrlWrapper(deleteTaskController));
+router.delete('/tasks/:taskId', isValidId, ctrlWrapper(deleteTaskController));
 
-router.put('/tasks/:taskId', ctrlWrapper(upsertTaskController));
+router.put(
+  '/tasks/:taskId',
+  isValidId,
+  validateBody(createTaskSchema),
+  ctrlWrapper(upsertTaskController),
+);
 
-router.patch('/tasks/:taskId', ctrlWrapper(patchTaskController));
+router.patch(
+  '/tasks/:taskId',
+  isValidId,
+  validateBody(updateTaskSchema),
+  ctrlWrapper(patchTaskController),
+);
 
 export default router;
