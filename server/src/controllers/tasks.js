@@ -7,11 +7,17 @@ import {
 } from '../services/tasks.js';
 import createHttpError from 'http-errors';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
+import { parseSortParams } from '../utils/parseSortParams.js';
+import { parseFilterParams } from '../utils/parseFilterParams.js';
 
 export const getAllTasksController = async (req, res, next) => {
   const { page, perPage } = parsePaginationParams(req.query);
 
-  const tasks = await getAllTasks({ page, perPage });
+  const { sortBy, sortOrder } = parseSortParams(req.query);
+
+  const filter = parseFilterParams(req.query);
+
+  const tasks = await getAllTasks({ page, perPage, sortBy, sortOrder, filter });
 
   res.status(200).json({
     status: 200,
@@ -41,7 +47,7 @@ export const createTaskController = async (req, res, next) => {
 
   res.status(201).json({
     status: 201,
-    message: `Successfully created a student!`,
+    message: `Successfully created a task!`,
     data: task,
   });
 };

@@ -1,16 +1,44 @@
+import { SORT_ORDER } from '../constants/index.js';
 import { TasksCollection } from '../db/models/task.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 
-export const getAllTasks = async ({ page, perPage }) => {
+export const getAllTasks = async ({
+  page = 1,
+  perPage = 10,
+  sortOrder = SORT_ORDER.ASC,
+  sortBy = '_id',
+  filter = {},
+}) => {
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
   const tasksQuery = TasksCollection.find();
-  const tasksCount = await TasksCollection.find()
-    .merge(tasksQuery)
-    .countDocuments();
+  if (filter.completed) {
+    tasksQuery.where('completed').equals(filter.completed);
+  }
 
-  const tasks = await tasksQuery.skip(skip).limit(limit).exec();
+  if (filter.text) {
+    tasksQuery.where('text').equals(filter.text);
+  }
+
+  const [tasksCount, tasks] = await Promise.all(
+    [TasksCollection.find().merge(tasksQuery).countDocuments()],
+    tasksQuery
+      .skip(skip)
+      .limit(limit)
+      .sort({ [sortBy]: sortOrder })
+      .exec(),
+  );
+
+  // const tasksCount = await TasksCollection.find()
+  //   .merge(tasksQuery)
+  //   .countDocuments();
+
+  // const tasks = await tasksQuery
+  //   .skip(skip)
+  //   .limit(limit)
+  //   .sort({ [sortBy]: sortOrder })
+  //   .exec();
 
   const paginationData = calculatePaginationData(tasksCount, perPage, page);
 
