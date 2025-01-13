@@ -30,16 +30,6 @@ export const getAllTasks = async ({
       .exec(),
   );
 
-  // const tasksCount = await TasksCollection.find()
-  //   .merge(tasksQuery)
-  //   .countDocuments();
-
-  // const tasks = await tasksQuery
-  //   .skip(skip)
-  //   .limit(limit)
-  //   .sort({ [sortBy]: sortOrder })
-  //   .exec();
-
   const paginationData = calculatePaginationData(tasksCount, perPage, page);
 
   return { data: tasks, ...paginationData };

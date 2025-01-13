@@ -14,27 +14,27 @@ import { isValidId } from '../middlewares/isValidId.js';
 
 const router = Router();
 
-router.get('/tasks', ctrlWrapper(getAllTasksController));
+router.get('/', ctrlWrapper(getAllTasksController));
 
-router.get('/tasks/:taskId', isValidId, ctrlWrapper(getTaskByIdController));
+router.get('/:taskId', isValidId, ctrlWrapper(getTaskByIdController));
 
 router.post(
-  '/tasks',
+  '/',
   validateBody(createTaskSchema),
   ctrlWrapper(createTaskController),
 );
 
-router.delete('/tasks/:taskId', isValidId, ctrlWrapper(deleteTaskController));
+router.delete('/:taskId', isValidId, ctrlWrapper(deleteTaskController));
 
 router.put(
-  '/tasks/:taskId',
+  '/:taskId',
   isValidId,
   validateBody(createTaskSchema),
   ctrlWrapper(upsertTaskController),
 );
 
 router.patch(
-  '/tasks/:taskId',
+  '/:taskId',
   isValidId,
   validateBody(updateTaskSchema),
   ctrlWrapper(patchTaskController),

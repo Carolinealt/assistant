@@ -3,7 +3,7 @@ import pino from 'pino-http';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { env } from './utils/env.js';
-import tasksRouter from './routers/tasks.js';
+import router from './routers/index.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 dotenv.config();
@@ -36,7 +36,7 @@ export const startServer = () => {
     });
   });
 
-  app.use(tasksRouter);
+  app.use(router);
 
   app.use('*', notFoundHandler);
 
