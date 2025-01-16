@@ -18,17 +18,19 @@ export const getAllTasks = async ({
   }
 
   if (filter.text) {
-    tasksQuery.where('text').equals(filter.text);
+    const textRegex = new RegExp(filter.text, 'i');
+    tasksQuery.where('text').regex(textRegex);
   }
+  console.log(filter.text, `filter.text`);
 
-  const [tasksCount, tasks] = await Promise.all(
-    [TasksCollection.find().merge(tasksQuery).countDocuments()],
+  const [tasksCount, tasks] = await Promise.all([
+    TasksCollection.find().merge(tasksQuery).countDocuments(),
     tasksQuery
       .skip(skip)
       .limit(limit)
       .sort({ [sortBy]: sortOrder })
       .exec(),
-  );
+  ]);
 
   const paginationData = calculatePaginationData(tasksCount, perPage, page);
 
