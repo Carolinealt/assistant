@@ -20,9 +20,14 @@ export const getAllTasks = async ({
   if (filter.text) {
     const textRegex = new RegExp(filter.text, 'i');
     tasksQuery.or([
-      { text: textRegex }, 
-      { title: textRegex }, 
+      { text: textRegex },
+      { title: textRegex },
     ]);
+  }
+
+  if (filter.title) {
+    const textRegex = new RegExp(filter.text, 'i');
+    tasksQuery.where('title').regex(textRegex);
   }
 
   const [tasksCount, tasks] = await Promise.all([
