@@ -6,12 +6,13 @@ const parseCompleted = (completed) => {
 };
 
 export const parseFilterParams = (query) => {
-  const { completed, text } = query;
+  const { completed, text, title } = query;
 
   const parsedCompleted = parseCompleted(completed);
 
   return {
     completed: parsedCompleted,
     text,
+    title
   };
 };

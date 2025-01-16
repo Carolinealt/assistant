@@ -19,9 +19,11 @@ export const getAllTasks = async ({
 
   if (filter.text) {
     const textRegex = new RegExp(filter.text, 'i');
-    tasksQuery.where('text').regex(textRegex);
+    tasksQuery.or([
+      { text: textRegex }, 
+      { title: textRegex }, 
+    ]);
   }
-  console.log(filter.text, `filter.text`);
 
   const [tasksCount, tasks] = await Promise.all([
     TasksCollection.find().merge(tasksQuery).countDocuments(),

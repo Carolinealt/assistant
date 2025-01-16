@@ -2,6 +2,7 @@ import { model, Schema } from 'mongoose';
 
 const tasksSchema = new Schema(
   {
+    title: { type: String, required: false },
     text: { type: String, required: true },
     completed: { type: Boolean, required: true },
   },
@@ -11,5 +12,4 @@ const tasksSchema = new Schema(
   },
 );
 
- export const TasksCollection = model('tasks', tasksSchema);
- 
+export const TasksCollection = model('tasks', tasksSchema);
