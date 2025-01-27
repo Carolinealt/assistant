@@ -1,8 +1,9 @@
 import Joi from 'joi';
 
 export const createTaskSchema = Joi.object({
-  title: Joi.string().messages({
+  title: Joi.string().allow('').messages({
     'string.base': 'title must be a string',
+
   }),
   text: Joi.string().required().messages({
     'string.base': 'Text must be a string',
