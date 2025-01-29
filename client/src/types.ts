@@ -1,7 +1,8 @@
 export interface Task {
-  id: number;
-  content: string;
+  title: string;
+  text: string;
   completed: boolean;
+  _id: string;
 }
 
 export interface TasksList {
@@ -11,7 +12,7 @@ export interface TasksList {
 export interface TasksState {
   items: Task[];
   isLoading: boolean;
-  isError: true | null;
+  error: string | null;
 }
 
 export const StatusFilter = {

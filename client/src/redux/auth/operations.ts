@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { UserSignUpData } from "../../types";
 
-axios.defaults.baseURL = "https://connections-api.goit.global/";
+// axios.defaults.baseURL = "https://connections-api.goit.global/";
 
 // const setHeaderToken = (token: string) => {
 //   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;

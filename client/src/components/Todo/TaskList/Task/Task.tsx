@@ -21,11 +21,11 @@ const TaskItem = ({ task }: TaskProps) => {
   // console.log(options);
 
   const checkId = useId();
-  const dispatch = useDispatch<AppDispatch>();
-  const handleDelete = (id: number) => {
+  const dispatch = useDispatch();
+  const handleDelete = (id: string) => {
     dispatch(deleteTask(id));
   };
-  const handleToggleTask = (id: number) => {
+  const handleToggleTask = (id: string) => {
     dispatch(toggleTask(id));
     isActiveTask = !isActiveTask;
   };
@@ -54,7 +54,7 @@ const TaskItem = ({ task }: TaskProps) => {
             task.completed ? css["contentCompleted"] : css["contentActive"]
           )}
         >
-          {task.content}
+          {task.text}
         </p>
       </div>
       <button onClick={() => handleDelete(task.id)} className={css.btn}>
