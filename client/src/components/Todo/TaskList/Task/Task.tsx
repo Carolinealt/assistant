@@ -31,7 +31,7 @@ const TaskItem = ({ task }: TaskProps) => {
   };
   return (
     <li
-      key={task.id}
+      key={task._id}
       className={clsx(css.item, task.completed && css["itemCompleted"])}
     >
       <div className={css.checkTaskContainer}>
@@ -49,15 +49,26 @@ const TaskItem = ({ task }: TaskProps) => {
             </svg>
           </span>
         </label>
-        <p
-          className={clsx(
-            task.completed ? css["contentCompleted"] : css["contentActive"]
-          )}
-        >
-          {task.text}
-        </p>
+        <div>
+          {task.title && <p
+            className={clsx(
+              css.taskTitle,
+              task.completed ? css["contentCompleted"] : css["contentActive"],
+            )}
+          >
+            {task.title}
+          </p>}
+          <p
+            className={clsx(
+              task.completed ? css["contentCompleted"] : css["contentActive"]
+            )}
+          >
+            {task.text}
+          </p>
+
+        </div>
       </div>
-      <button onClick={() => handleDelete(task.id)} className={css.btn}>
+      <button onClick={() => handleDelete(task._id)} className={css.btn}>
         <svg className={css.iconClose} width={10} height={10}>
           <use href="public/image.svg#icon-cross"></use>
         </svg>

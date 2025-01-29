@@ -56,6 +56,7 @@
   background-color: #ffffff1c;
 }
 
+
 .contentActive {
   margin: 0;
   text-align: left;
@@ -68,6 +69,10 @@
   text-decoration: line-through;
   text-align: left;
   font-size: 14px;
+}
+.taskTitle{
+  font-size: 25px;
+
 }
 
 .btn {

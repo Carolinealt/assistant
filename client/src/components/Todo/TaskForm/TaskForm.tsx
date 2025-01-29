@@ -8,24 +8,33 @@ const TaskForm = () => {
   const dispatch = useDispatch();
   const inputTaskId = useId();
   const handleSubmit = (values, action) => {
-    if (!values.task.trim()) {
-      // alert("enter something...");
-      return;
-    }
-    const task = { text: values.task, title: values.title ?? '', completed: false };
+    // if (!values.task.trim()) {
+    //   alert("enter something...");
+    //   return;
+    // }
+    const task = { text: values.taskText, title: values.titleText ?? '', completed: false };
     dispatch(addTasks(task));
     action.resetForm();
   };
   return (
     <div>
-      <Formik initialValues={{ task: "" }} onSubmit={handleSubmit}>
+      <Formik initialValues={{ titleText: "", taskText: "" }} onSubmit={handleSubmit}>
         <Form className={css.form}>
           <label htmlFor={inputTaskId}>Enter your task</label>
           <Field
-            name="task"
+            name="titleText"
             type="text"
             id={inputTaskId}
             className={css.inputTask}
+            placeholder="title"
+          />
+          <Field
+            name="taskText"
+            type="text"
+            id={inputTaskId}
+            className={css.inputTask}
+            placeholder="text"
+
           />
           <button type="submit" className={css.btn}>
             Add
