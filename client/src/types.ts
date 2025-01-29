@@ -1,8 +1,8 @@
 export interface Task {
+  _id: string;
   title: string;
   text: string;
   completed: boolean;
-  _id: string;
 }
 
 export interface TasksList {

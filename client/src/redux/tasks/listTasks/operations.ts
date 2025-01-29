@@ -12,7 +12,9 @@ export const fetchTasks = createAsyncThunk<Task[], { rejectWithValue: string }>(
         data: {
           data: { data },
         },
-      } = await axios.get("/tasks");
+      } = await axios.get("/tasks", { params: { perPage: 100 } });
+      console.log(data);
+
       return data;
     } catch (e: any) {
       return rejectWithValue(e.message);
@@ -20,28 +22,14 @@ export const fetchTasks = createAsyncThunk<Task[], { rejectWithValue: string }>(
   }
 );
 
-// export const addTasks = createAsyncThunk<Task[], { rejectWithValue: string }>(
-//   'tasks/addTask',
-//   async (_, { rejectWithValue }) => {
-//       try {
-//           const { data: { data: { data } } } = await axios.get('/tasks');
-//           return data;
-//       } catch (e: any) {
-//           return rejectWithValue(e.message);
-//       }
-//   }
-// );
-
 export const addTasks = createAsyncThunk<Task, Task, { rejectValue: string }>(
   "tasks/addTask",
   async (payload, { rejectWithValue }) => {
     try {
-      console.log(payload,"payload");
-      
-      const { data } = await axios.post<{ data: Task }>("/tasks", payload);
-      console.log('hi');
-      
-      return data.data;
+      const {
+        data: { data },
+      } = await axios.post<{ data: Task }>("/tasks", payload);
+      return data;
     } catch (e: unknown) {
       if (axios.isAxiosError(e) && e.message) {
         return rejectWithValue(e.message);
