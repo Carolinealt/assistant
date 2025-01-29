@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Task, TasksState } from "../../../types";
-import { fetchTasks } from "./operations";
+import { addTasks, fetchTasks } from "./operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -30,14 +30,14 @@ export const tasksSlice = createSlice({
         state.items = payload;
       })
       .addCase(fetchTasks.rejected, handleRejected)
-      .addCase(addTask.pending, handlePending)
-      .addCase(addTask.fulfilled, (state, { payload }) => {
+      .addCase(addTasks.pending, handlePending)
+      .addCase(addTasks.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // state.items = payload;
+        state.items.push(payload);
       })
-      .addCase(addTask.rejected, handleRejected)
-  }
+      .addCase(addTasks.rejected, handleRejected);
+  },
   // {
   //   addTask: (state, { payload }: PayloadAction<Task>) => {
   //     state.items = [...state.items, payload];
@@ -54,7 +54,6 @@ export const tasksSlice = createSlice({
   //     }
   //   },
   // },
-
 });
 
 export const { addTask, deleteTask, toggleTask } = tasksSlice.actions;
