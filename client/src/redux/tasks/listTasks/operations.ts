@@ -55,3 +55,27 @@ export const deleteTask = createAsyncThunk<
     return rejectWithValue("Unknow error");
   }
 });
+
+export const toggleTask = createAsyncThunk<
+  string,
+  {
+    _id: string;
+    completed: boolean;
+  },
+  { rejectWithValue: string }
+>("tasks/toggleTask", async ({ _id, completed }, { rejectWithValue }) => {
+  try {
+    const response = await axios.patch(`tasks/:${_id}`, { completed });
+    console.log(response);
+
+    return response;
+  } catch (e: unknown) {
+    console.log(e);
+
+    if (axios.isAxiosError(e) && e.message) {
+      return rejectWithValue(e.message);
+    }
+
+    return rejectWithValue("Unknow error");
+  }
+});

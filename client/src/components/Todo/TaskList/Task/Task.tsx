@@ -4,7 +4,7 @@ import { Task } from "../../../../types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../redux/store";
 import clsx from "clsx";
-import { deleteTask } from "../../../../redux/tasks/listTasks/operations";
+import { deleteTask, toggleTask } from "../../../../redux/tasks/listTasks/operations";
 
 interface TaskProps {
   task: Task;
@@ -22,8 +22,11 @@ const TaskItem = ({ task }: TaskProps) => {
   const handleDelete = (id: string) => {
     dispatch(deleteTask(id));
   };
-  const handleToggleTask = (id: string) => {
-    // dispatch(toggleTask(id));
+
+  const handleToggleTask = (taskId, taskIsCompleted) => {
+    const queryToggleData = { _id: taskId, completed: !taskIsCompleted }
+    dispatch(toggleTask(queryToggleData));
+
     isActiveTask = !isActiveTask;
   };
   return (
@@ -37,7 +40,7 @@ const TaskItem = ({ task }: TaskProps) => {
             type="checkbox"
             id={checkId}
             name="status"
-            onChange={() => handleToggleTask(task.id)}
+            onChange={() => handleToggleTask(task._id, task.completed)}
             className={css.checkbox}
           ></input>
           <span className={css.containerCheckbox}>
