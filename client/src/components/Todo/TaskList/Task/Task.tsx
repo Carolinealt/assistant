@@ -3,11 +3,8 @@ import css from "./Task.module.css";
 import { Task } from "../../../../types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../redux/store";
-import {
-  deleteTask,
-  toggleTask,
-} from "../../../../redux/tasks/listTasks/slice";
 import clsx from "clsx";
+import { deleteTask } from "../../../../redux/tasks/listTasks/operations";
 
 interface TaskProps {
   task: Task;
@@ -26,7 +23,7 @@ const TaskItem = ({ task }: TaskProps) => {
     dispatch(deleteTask(id));
   };
   const handleToggleTask = (id: string) => {
-    dispatch(toggleTask(id));
+    // dispatch(toggleTask(id));
     isActiveTask = !isActiveTask;
   };
   return (

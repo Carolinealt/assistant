@@ -38,3 +38,20 @@ export const addTasks = createAsyncThunk<Task, Task, { rejectValue: string }>(
     }
   }
 );
+
+export const deleteTask = createAsyncThunk<
+  string,
+  string,
+  { rejectValue: string }
+>("tasks/deleteTask", async (payload, { rejectWithValue }) => {
+  try {
+    await axios.delete(`/tasks/${payload}`);
+    return payload;
+  } catch (e: unknown) {
+    if (axios.isAxiosError(e) && e.message) {
+      return rejectWithValue(e.message);
+    }
+
+    return rejectWithValue("Unknow error");
+  }
+});
